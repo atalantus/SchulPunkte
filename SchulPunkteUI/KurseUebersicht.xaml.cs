@@ -29,7 +29,7 @@ namespace SchulPunkteUI
             InitializeComponent();
             Closing += OnWindowClosing;
 
-            Serialisierung = new Serialisierung();
+            Serialisierung = Serialisierung.Instance;
             Manager = Manager.Instance;
 
             Serialisierung.Laden();

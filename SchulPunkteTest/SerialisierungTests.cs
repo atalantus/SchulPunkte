@@ -10,7 +10,7 @@ namespace SchulPunkteTest
         [TestMethod]
         public void SpeichernTest()
         {
-            Serialisierung serialisierung = new Serialisierung();
+            Serialisierung serialisierung = Serialisierung.Instance;
 
             Assert.AreEqual(true, serialisierung.Speichern());
         }
@@ -18,7 +18,7 @@ namespace SchulPunkteTest
         [TestMethod]
         public void LadenTest()
         {
-            Serialisierung serialisierung = new Serialisierung();
+            Serialisierung serialisierung = Serialisierung.Instance;
 
             Assert.AreEqual(true, serialisierung.Laden());
         }

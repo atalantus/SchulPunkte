@@ -11,7 +11,8 @@ namespace SchulPunkte
     public class KursListBoxItem : ListBoxItem
     {
         public Kurs Kurs { get; set; }
-        public bool Fehler { get; set; }
+        public bool KursnameFehler { get; set; }
+        public bool KursnummerFehler { get; set; }
 
         public KursListBoxItem(Kurs kurs)
         {
@@ -29,6 +30,11 @@ namespace SchulPunkte
             Kurs = kurs;
             base.Style = style;
             base.Content = content;
+        }
+
+        public bool IsFehler()
+        {
+            return (KursnameFehler || KursnummerFehler);
         }
     }
 }

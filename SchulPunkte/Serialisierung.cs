@@ -11,13 +11,22 @@ namespace SchulPunkte
 {
     public class Serialisierung
     {
-        //TODO: Singleton machen
         //TODO: Mehrere Speicherungen pro Semester. Siehe Menueleiste
         #region Attribute
+        private static Serialisierung _Instance = null;
         private string _SpeicherPfad = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
         public Manager Manager { get; private set; }
         public Einstellungen Einstellungen { get; private set; }
+        public static Serialisierung Instance
+        {
+            get
+            {
+                if (_Instance == null)
+                    _Instance = new Serialisierung();
+                return _Instance;
+            }
+        }
 
         public string SpeicherPfad
         {
@@ -33,7 +42,7 @@ namespace SchulPunkte
         #endregion
 
         #region Konstruktoren
-        public Serialisierung()
+        private Serialisierung()
         {
             Manager = Manager.Instance;
             Einstellungen = Einstellungen.Instance;

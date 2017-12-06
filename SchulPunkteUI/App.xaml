@@ -26,7 +26,7 @@
 
         <!-- Header01 style -->
         <Style x:Key="header01" TargetType="{x:Type Label}">
-            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontFamily" Value="/SchulPunkteUI;component/Fonts/Roboto/#Roboto Light"></Setter>
             <Setter Property="FontSize" Value="32"></Setter>
             <Setter Property="Foreground" Value="{StaticResource primaryTextBrush}"></Setter>
             <Setter Property="Margin" Value="0,0,0,7.5"></Setter>
@@ -35,7 +35,7 @@
 
         <!-- Header02 style -->
         <Style x:Key="header02" TargetType="{x:Type Label}">
-            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontFamily" Value="/SchulPunkteUI;component/Fonts/Roboto/#Roboto Thin"></Setter>
             <Setter Property="FontSize" Value="28"></Setter>
             <Setter Property="Foreground" Value="{StaticResource primaryTextBrush}"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
@@ -44,7 +44,7 @@
         <!-- Header03 style-->
         <Style x:Key="header03" TargetType="{x:Type Label}">
             <Setter Property="FontSize" Value="20"></Setter>
-            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontFamily" Value="/SchulPunkteUI;component/Fonts/Roboto/#Roboto Thin"></Setter>
             <Setter Property="Foreground" Value="{StaticResource primaryTextBrush}"></Setter>
             <Setter Property="Margin" Value="0,0,0,2.5"></Setter>
             <Setter Property="Background" Value="Transparent"></Setter>
@@ -52,16 +52,16 @@
 
         <!-- NormalTextLabel style-->
         <Style x:Key="normalTextLabel" TargetType="{x:Type Label}">
-            <Setter Property="FontSize" Value="18"></Setter>
-            <Setter Property="FontFamily" Value="Calibri"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="FontFamily" Value="/SchulPunkteUI;component/Fonts/Open_Sans/#Open Sans Light"></Setter>
             <Setter Property="Foreground" Value="{StaticResource primaryTextBrush}"></Setter>
             <Setter Property="Margin" Value="0,0,0,2.5"></Setter>
         </Style>
 
         <!-- NormalTextBlock style-->
         <Style x:Key="normalTextBlock" TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="18"></Setter>
-            <Setter Property="FontFamily" Value="Calibri"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="FontFamily" Value="/SchulPunkteUI;component/Fonts/Open_Sans/#Open Sans Light"></Setter>
             <Setter Property="Foreground" Value="{StaticResource primaryTextBrush}"></Setter>
             <Setter Property="Margin" Value="0,0,0,2.5"></Setter>
             <Setter Property="TextWrapping" Value="Wrap"></Setter>
@@ -70,7 +70,7 @@
         <!-- WarningFeedbackLabel style -->
         <Style x:Key="warningFeedbackLabel" TargetType="{x:Type Label}">
             <Setter Property="FontSize" Value="15"></Setter>
-            <Setter Property="FontFamily" Value="Calibri"></Setter>
+            <Setter Property="FontFamily" Value="/SchulPunkteUI;component/Fonts/Open_Sans/#Open Sans"></Setter>
             <Setter Property="Foreground" Value="#e74c3c"></Setter>
             <Setter Property="Height" Value="27.5"></Setter>
             <Setter Property="Margin" Value="0,-5,0,0"></Setter>
@@ -78,7 +78,7 @@
         
         <!-- PrimaryBtn style -->
         <Style x:Key="primaryBtn" TargetType="{x:Type Button}">
-            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontFamily" Value="/SchulPunkteUI;component/Fonts/Open_Sans/#Open Sans"></Setter>
             <Setter Property="FontSize" Value="18"></Setter>
             <Setter Property="Background" Value="{StaticResource secondaryDarkBrush}"></Setter>
             <Setter Property="Foreground" Value="{StaticResource secondaryTextBrush}"></Setter>
@@ -129,7 +129,7 @@
         
         <!-- DefaultBtn style -->
         <Style x:Key="defaultBtn" TargetType="{x:Type Button}">
-            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontFamily" Value="/SchulPunkteUI;component/Fonts/Open_Sans/#Open Sans"></Setter>
             <Setter Property="FontSize" Value="18"></Setter>
             <Setter Property="Background" Value="#7f8c8d"></Setter>
             <Setter Property="Foreground" Value="#ecf0f1"></Setter>
@@ -180,7 +180,7 @@
 
         <!-- DangerBtn style -->
         <Style x:Key="dangerBtn" TargetType="{x:Type Button}">
-            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontFamily" Value="/SchulPunkteUI;component/Fonts/Open_Sans/#Open Sans"></Setter>
             <Setter Property="FontSize" Value="18"></Setter>
             <Setter Property="Background" Value="#c0392b"></Setter>
             <Setter Property="Foreground" Value="#ecf0f1"></Setter>
@@ -260,7 +260,7 @@
             <Setter Property="Background" Value="{StaticResource primaryDarkBrush}"/>
             <Style.Resources>
                 <Style TargetType="{x:Type MenuItem}">
-                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="FontSize" Value="14"></Setter>
                     <Setter Property="Background" Value="{StaticResource primaryDarkBrush}"/>
                     <Setter Property="Foreground" Value="{StaticResource primaryTextBrush}"/>
                 </Style>

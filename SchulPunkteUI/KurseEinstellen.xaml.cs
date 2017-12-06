@@ -100,10 +100,13 @@ namespace SchulPunkteUI
             bool listeEnthaeltFehler = false;
             foreach (KursListBoxItem kursItem in KurseListBox.Items)
             {
-                if (kursItem.Fehler)
+                if (kursItem.IsFehler())
                 {
                     kursItem.Foreground = Brushes.Red;
                     listeEnthaeltFehler = true;
+                } else
+                {
+                    kursItem.Foreground = Brushes.Black;
                 }
             }
 
@@ -166,15 +169,18 @@ namespace SchulPunkteUI
             if (NeuerKursname.Text.Contains("("))
             {
                 KursnameFeedback.Content = "Ungültiges Zeichen: (";
-                SelectedKurs.Fehler = true;
+                SelectedKurs.KursnameFehler = true;
             }
             else if (!KursnamePruefen(SelectedKurs))
             {
                 KursnameFeedback.Content = "Dieser Kursname existiert bereits!";
-                SelectedKurs.Fehler = true;
+                SelectedKurs.KursnameFehler = true;
             }
             else
+            {
                 KursnameFeedback.Content = "";
+                SelectedKurs.KursnameFehler = false;
+            }
 
             FehlerPruefen();
             
@@ -201,15 +207,18 @@ namespace SchulPunkteUI
             if (NeueKursnummer.Text.Contains("("))
             {
                 KursnummerFeedback.Content = "Ungültiges Zeichen: (";
-                SelectedKurs.Fehler = true;
+                SelectedKurs.KursnummerFehler = true;
             }
             else if (!KursnummerPruefen(SelectedKurs))
             {
                 KursnummerFeedback.Content = "Diese Kursnummer existiert bereits!";
-                SelectedKurs.Fehler = true;
+                SelectedKurs.KursnummerFehler = true;
             }
             else
+            {
                 KursnummerFeedback.Content = "";
+                SelectedKurs.KursnummerFehler = false;
+            }
 
             FehlerPruefen();
             
