@@ -1,0 +1,31 @@
+﻿<Window x:Class="SchulPunkteUI.KurseUebersicht"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchulPunkteUI"
+        mc:Ignorable="d"
+        Title="Kurse Übersicht" Height="700" Width="1000">
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top" Name="MainMenue" FontSize="14">
+                <MenuItem Header="_Semester">
+                    <MenuItem Header="_Semester auswählen"></MenuItem>
+                    <MenuItem Header="_Neues Semester erstellen"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="_Einstellen">
+                    <MenuItem Header="_Einstellungen"></MenuItem>
+                    <Separator />
+                    <MenuItem Header="_Kurse Einstellen" Name="KurseEinstellenMenue" Click="KurseEinstellenMenue_Click"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="_Hilfe">
+                    <MenuItem Header="_Frag Jonas"></MenuItem>
+                    <MenuItem Header="_Color Theme" Name="MainWindowMenue" Click="MainWindowMenue_Click"></MenuItem>
+                    <Separator/>
+                    <MenuItem Header="_Auf Update prüfen"></MenuItem>
+                </MenuItem>
+            </Menu>
+            <StackPanel></StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>

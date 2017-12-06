@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+
+namespace SchulPunkte
+{
+    public class KursListBoxItem : ListBoxItem
+    {
+        public Kurs Kurs { get; set; }
+        public bool Fehler { get; set; }
+
+        public KursListBoxItem(Kurs kurs)
+        {
+            Kurs = kurs;
+        }
+
+        public KursListBoxItem(Kurs kurs, string content)
+        {
+            Kurs = kurs;
+            base.Content = content;
+        }
+
+        public KursListBoxItem(Kurs kurs, Style style, string content)
+        {
+            Kurs = kurs;
+            base.Style = style;
+            base.Content = content;
+        }
+    }
+}
