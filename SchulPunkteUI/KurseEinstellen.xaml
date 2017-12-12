@@ -19,9 +19,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0">Kurse einstellen</Label>
-            <Button Grid.Column="1" Click="Help" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top">
-                <Image Source="Images/question-mark-icon.png" Width="25" Height="25"/>
-            </Button>
+            <Button Grid.Column="1" Click="Help" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top">?</Button>
         </Grid>
         <Grid Grid.Row="1" Margin="0,0,0,5">
             <Grid.ColumnDefinitions>

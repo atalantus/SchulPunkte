@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchulPunkteUI"
         mc:Ignorable="d"
-        Title="Kurse Übersicht" Height="700" Width="1000">
+        Title="Kurse Übersicht" Height="700" Width="1000" MinHeight="400" MinWidth="600">
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" Name="MainMenue" FontSize="14">
@@ -27,19 +27,17 @@
             </Menu>
             <StackPanel></StackPanel>
         </DockPanel>
-        <Button Margin="0,25,10,0" Grid.Column="1" Click="Help" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <Image Source="Images/question-mark-icon.png" Width="25" Height="25"/>
-        </Button>
+        <Button Margin="0,25,10,0" Grid.Column="1" Click="Help" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top">?</Button>
         <Grid Margin="10,50,10,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <TabControl Grid.Column="1" Margin="0,0,50,0" Name="InfoTabs" SelectionChanged="TabControl_SelectionChanged">
+            <TabControl Grid.Column="1" Name="InfoTabs" SelectionChanged="TabControl_SelectionChanged">
                 <TabItem Header="Gesamt Übersicht">
                     <Label>In Arbeit...</Label>
                 </TabItem>
@@ -47,7 +45,21 @@
                     <Label>In Arbeit...</Label>
                 </TabItem>
                 <TabItem Header="Leistungserhebungen">
-                    
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Name="LeistungserhebungenHeader" Grid.Row="0" Grid.Column="0">Leistungserhebungen des Kurses: __Kursname (Kursnummer)__</Label>
+                        <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Name="AddLeistungserhebung" Click="AddLeistungserhebung_Click">Neue Leistungserhebung</Button>
+                        <ListView Grid.Row="2" Grid.Column="0" Name="LeistungserhebungsListe"></ListView>
+                    </Grid>
                 </TabItem>
             </TabControl>
 
@@ -68,7 +80,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0">Filter:</Label>
-                    <TextBox Grid.Column="1"></TextBox>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Left" Width="150"></TextBox>
                 </Grid>
                 
                 <ListBox Grid.Column="0" Grid.Row="2" Name="KurseListBox" SelectionChanged="KurseListBox_SelectionChanged"></ListBox>

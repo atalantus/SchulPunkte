@@ -62,7 +62,21 @@ namespace SchulPunkteUI
 
         private void UpdateLeistungserhebungen()
         {
+            if (SelectedKurs == null)
+            {
+                LeistungserhebungenHeader.Content = "Kein Kurs ausgewählt!";
+                AddLeistungserhebung.IsEnabled = false;
+                return;
+            }
 
+            LeistungserhebungenHeader.Content = "Leistungserhebungen des Kurses: " + SelectedKurs.Kurs.GetKursInfo();
+            AddLeistungserhebung.IsEnabled = true;
+            foreach (Leistungserhebung kurs in SelectedKurs.Kurs.Leistungserhebungen)
+            {
+                LeistungserhebungListBoxItem leistungserhebungItem = new LeistungserhebungListBoxItem();
+                //kursItem.Style = ListBoxItemStyle;
+                LeistungserhebungsListe.Items.Add(leistungserhebungItem);
+            }
         }
         #endregion
 
@@ -95,26 +109,29 @@ namespace SchulPunkteUI
 
         private void KurseListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            SelectedKurs = (KursListBoxItem) KurseListBox.SelectedValue;
             TabControl_SelectionChanged(null, null);
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.Source is TabControl)
+            switch (InfoTabs.SelectedIndex)
             {
-                switch(InfoTabs.SelectedIndex)
-                {
-                    case 0:
-                        UpdateGesamtUebersicht();
-                        break;
-                    case 1:
-                        UpdateKursUebersicht();
-                        break;
-                    case 2:
-                        UpdateLeistungserhebungen();
-                        break;
-                }
+                case 0:
+                    UpdateGesamtUebersicht();
+                    break;
+                case 1:
+                    UpdateKursUebersicht();
+                    break;
+                case 2:
+                    UpdateLeistungserhebungen();
+                    break;
             }
+        }
+
+        private void AddLeistungserhebung_Click(object sender, RoutedEventArgs e)
+        {
+
         }
         #endregion
     }
