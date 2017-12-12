@@ -27,5 +27,52 @@
             </Menu>
             <StackPanel></StackPanel>
         </DockPanel>
+        <Button Margin="0,25,10,0" Grid.Column="1" Click="Help" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Image Source="Images/question-mark-icon.png" Width="25" Height="25"/>
+        </Button>
+        <Grid Margin="10,50,10,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <TabControl Grid.Column="1" Margin="0,0,50,0" Name="InfoTabs" SelectionChanged="TabControl_SelectionChanged">
+                <TabItem Header="Gesamt Übersicht">
+                    <Label>In Arbeit...</Label>
+                </TabItem>
+                <TabItem Header="Kurs Übersicht">
+                    <Label>In Arbeit...</Label>
+                </TabItem>
+                <TabItem Header="Leistungserhebungen">
+                    
+                </TabItem>
+            </TabControl>
+
+            <Grid Grid.Column="0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0">Kurse</Label>
+                
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0">Filter:</Label>
+                    <TextBox Grid.Column="1"></TextBox>
+                </Grid>
+                
+                <ListBox Grid.Column="0" Grid.Row="2" Name="KurseListBox" SelectionChanged="KurseListBox_SelectionChanged"></ListBox>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

@@ -21,9 +21,14 @@ namespace SchulPunkteUI
     /// </summary>
     public partial class KurseUebersicht : Window
     {
+        #region Attribute
         private Serialisierung Serialisierung;
         private Manager Manager;
+        private KursListBoxItem SelectedKurs;
+        private Style ListBoxItemStyle;
+        #endregion
 
+        #region Konstruktoren
         public KurseUebersicht()
         {
             InitializeComponent();
@@ -31,10 +36,37 @@ namespace SchulPunkteUI
 
             Serialisierung = Serialisierung.Instance;
             Manager = Manager.Instance;
+            ListBoxItemStyle = this.FindResource("defaultListBoxItem") as Style;
 
             Serialisierung.Laden();
+
+            foreach (Kurs kurs in Manager.Kurse)
+            {
+                KursListBoxItem kursItem = new KursListBoxItem(kurs, kurs.GetKursInfo());
+                //kursItem.Style = ListBoxItemStyle;
+                KurseListBox.Items.Add(kursItem);
+            }
+        }
+        #endregion
+
+        #region Methoden
+        private void UpdateGesamtUebersicht()
+        {
+
         }
 
+        private void UpdateKursUebersicht()
+        {
+
+        }
+
+        private void UpdateLeistungserhebungen()
+        {
+
+        }
+        #endregion
+
+        #region Event Handler
         private void KurseEinstellenMenue_Click(object sender, RoutedEventArgs e)
         {
             KurseEinstellen kurseEinstellen = new KurseEinstellen();
@@ -55,5 +87,35 @@ namespace SchulPunkteUI
             mainWindow.Activate();
             mainWindow.Focus();
         }
+
+        private void Help(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void KurseListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TabControl_SelectionChanged(null, null);
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.Source is TabControl)
+            {
+                switch(InfoTabs.SelectedIndex)
+                {
+                    case 0:
+                        UpdateGesamtUebersicht();
+                        break;
+                    case 1:
+                        UpdateKursUebersicht();
+                        break;
+                    case 2:
+                        UpdateLeistungserhebungen();
+                        break;
+                }
+            }
+        }
+        #endregion
     }
 }

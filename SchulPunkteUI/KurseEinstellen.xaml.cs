@@ -24,9 +24,9 @@ namespace SchulPunkteUI
         #region Attribute
         private KursListBoxItem SelectedKurs;
         private Style ListBoxItemStyle;
+        private List<char> NichtErlaubt;
 
         private Manager Manager;
-        private enum KursnamenTeile { name, nummer };
         #endregion
 
         #region Konstruktor
@@ -37,6 +37,7 @@ namespace SchulPunkteUI
 
             Manager = Manager.Instance;
             SelectedKurs = null;
+            NichtErlaubt = new List<char>() { '(', ';', '*', ':', '\\', '"', '/', ')' };
 
             foreach (Kurs kurs in Manager.Kurse)
             {
@@ -72,6 +73,21 @@ namespace SchulPunkteUI
         }
 
         /// <summary>
+        /// Ueberprueft, ob der String einen der chars in der 'NichtErlaubt' Liste enthält.
+        /// </summary>
+        /// <param name="name">String der ueberprueft werden soll.</param>
+        /// <returns>UnerlaubtesZeichen Objekt</returns>
+        private UnerlaubtesZeichen StringPruefen(string name)
+        {
+            foreach (char c in NichtErlaubt)
+            {
+                if (name.Contains(c))
+                    return new UnerlaubtesZeichen(true, c);
+            }
+            return new UnerlaubtesZeichen(false);
+        }
+
+        /// <summary>
         /// Ueberprueft, ob eine Kursnummer in der aktuellen Liste bereits vorkommt.
         /// </summary>
         /// <param name="neueKursnummer">Kursnummer, die ueberprueft werden soll.</param>
@@ -104,7 +120,8 @@ namespace SchulPunkteUI
                 {
                     kursItem.Foreground = Brushes.Red;
                     listeEnthaeltFehler = true;
-                } else
+                }
+                else
                 {
                     kursItem.Foreground = Brushes.Black;
                 }
@@ -165,10 +182,11 @@ namespace SchulPunkteUI
                 return;
 
             SelectedKurs.Kurs.Kursname = NeuerKursname.Text;
+            UnerlaubtesZeichen unerlaubtesZeichen = StringPruefen(NeuerKursname.Text);
 
-            if (NeuerKursname.Text.Contains("("))
+            if (unerlaubtesZeichen.Error)
             {
-                KursnameFeedback.Content = "Ungültiges Zeichen: (";
+                KursnameFeedback.Content = "Ungültiges Zeichen: " + unerlaubtesZeichen.Zeichen;
                 SelectedKurs.KursnameFehler = true;
             }
             else if (!KursnamePruefen(SelectedKurs))
@@ -183,7 +201,7 @@ namespace SchulPunkteUI
             }
 
             FehlerPruefen();
-            
+
             SelectedKurs.Content = NeuerKursname.Text + " (" + NeueKursnummer.Text + ")";
         }
 
@@ -203,10 +221,11 @@ namespace SchulPunkteUI
                 return;
 
             SelectedKurs.Kurs.Kursnummer = NeueKursnummer.Text;
+            UnerlaubtesZeichen unerlaubtesZeichen = StringPruefen(NeueKursnummer.Text);
 
-            if (NeueKursnummer.Text.Contains("("))
+            if (unerlaubtesZeichen.Error)
             {
-                KursnummerFeedback.Content = "Ungültiges Zeichen: (";
+                KursnummerFeedback.Content = "Ungültiges Zeichen: " + unerlaubtesZeichen.Zeichen;
                 SelectedKurs.KursnummerFehler = true;
             }
             else if (!KursnummerPruefen(SelectedKurs))
@@ -221,16 +240,26 @@ namespace SchulPunkteUI
             }
 
             FehlerPruefen();
-            
+
             SelectedKurs.Content = NeuerKursname.Text + " (" + NeueKursnummer.Text + ")";
         }
 
+        /// <summary>
+        /// NeuerKursname Input Field wird ueber Tab-key gefocused. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NeuerKursname_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             if (e.KeyboardDevice.IsKeyDown(Key.Tab))
                 NeuerKursname.SelectAll();
         }
 
+        /// <summary>
+        /// NeueKursnummer Input Field wird ueber Tab-key gefocused. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NeueKursnummer_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             if (e.KeyboardDevice.IsKeyDown(Key.Tab))
@@ -242,6 +271,11 @@ namespace SchulPunkteUI
             //TODO: Hilfe Panel anzeigen
         }
 
+        /// <summary>
+        /// Speichert die neuen Kurse und schliesst das Fenster.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WeiterBtn_Click(object sender, RoutedEventArgs e)
         {
             Manager.Kurse.Clear();
@@ -258,4 +292,18 @@ namespace SchulPunkteUI
         //Moechtest du wirklich den Kurs #kurs mit n eingetragenen Leistungserhebungen loeschen?
         #endregion
     }
+
+    #region Structs
+    public struct UnerlaubtesZeichen
+    {
+        public char Zeichen { get; set; }
+        public bool Error { get; set; }
+
+        public UnerlaubtesZeichen(bool error, char zeichen = 'e')
+        {
+            Error = error;
+            Zeichen = zeichen;
+        }
+    }
+    #endregion
 }
