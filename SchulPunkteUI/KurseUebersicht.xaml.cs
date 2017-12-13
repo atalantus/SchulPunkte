@@ -40,6 +40,14 @@ namespace SchulPunkteUI
 
             Serialisierung.Laden();
 
+            UpdateKurse();
+        }
+        #endregion
+
+        #region Methoden
+        public void UpdateKurse()
+        {
+            KurseListBox.Items.Clear();
             foreach (Kurs kurs in Manager.Kurse)
             {
                 KursListBoxItem kursItem = new KursListBoxItem(kurs, kurs.GetKursInfo());
@@ -47,20 +55,18 @@ namespace SchulPunkteUI
                 KurseListBox.Items.Add(kursItem);
             }
         }
-        #endregion
 
-        #region Methoden
-        private void UpdateGesamtUebersicht()
+        public void UpdateGesamtUebersicht()
         {
 
         }
 
-        private void UpdateKursUebersicht()
+        public void UpdateKursUebersicht()
         {
 
         }
 
-        private void UpdateLeistungserhebungen()
+        public void UpdateLeistungserhebungen()
         {
             if (SelectedKurs == null)
             {
@@ -83,7 +89,7 @@ namespace SchulPunkteUI
         #region Event Handler
         private void KurseEinstellenMenue_Click(object sender, RoutedEventArgs e)
         {
-            KurseEinstellen kurseEinstellen = new KurseEinstellen();
+            KurseEinstellen kurseEinstellen = new KurseEinstellen(this);
             kurseEinstellen.ShowDialog();
             kurseEinstellen.Activate();
             kurseEinstellen.Focus();
@@ -131,7 +137,10 @@ namespace SchulPunkteUI
 
         private void AddLeistungserhebung_Click(object sender, RoutedEventArgs e)
         {
-
+            LeistungserhebungHinzufuegen leistungserhebungHinzufuegen = new LeistungserhebungHinzufuegen();
+            leistungserhebungHinzufuegen.ShowDialog();
+            leistungserhebungHinzufuegen.Activate();
+            leistungserhebungHinzufuegen.Focus();
         }
         #endregion
     }

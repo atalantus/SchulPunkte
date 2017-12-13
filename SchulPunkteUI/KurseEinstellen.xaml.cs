@@ -25,18 +25,20 @@ namespace SchulPunkteUI
         private KursListBoxItem SelectedKurs;
         private Style ListBoxItemStyle;
         private List<char> NichtErlaubt;
+        private KurseUebersicht KurseUebersicht;
 
         private Manager Manager;
         #endregion
 
         #region Konstruktor
-        public KurseEinstellen()
+        public KurseEinstellen(KurseUebersicht kurseUebersicht)
         {
             InitializeComponent();
             ListBoxItemStyle = this.FindResource("defaultListBoxItem") as Style;
 
             Manager = Manager.Instance;
             SelectedKurs = null;
+            KurseUebersicht = kurseUebersicht;
             NichtErlaubt = new List<char>() { '(', ';', '*', ':', '\\', '"', '/', ')' };
 
             foreach (Kurs kurs in Manager.Kurse)
@@ -285,6 +287,7 @@ namespace SchulPunkteUI
                     Manager.Kurse.Add(kursItem.Kurs);
             }
 
+            KurseUebersicht.UpdateKurse();
             Close();
         }
 
