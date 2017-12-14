@@ -26,16 +26,18 @@ namespace SchulPunkteUI
         private Style ListBoxItemStyle;
         private List<char> NichtErlaubt;
         private KurseUebersicht KurseUebersicht;
+        private bool EinfachesSchliessen;
 
         private Manager Manager;
         #endregion
 
         #region Konstruktor
-        public KurseEinstellen(KurseUebersicht kurseUebersicht)
+        public KurseEinstellen(KurseUebersicht kurseUebersicht, bool einfachesSchliessen = true)
         {
             InitializeComponent();
             ListBoxItemStyle = this.FindResource("defaultListBoxItem") as Style;
 
+            EinfachesSchliessen = einfachesSchliessen;
             Manager = Manager.Instance;
             SelectedKurs = null;
             KurseUebersicht = kurseUebersicht;
@@ -297,6 +299,14 @@ namespace SchulPunkteUI
             }
 
             KurseUebersicht.UpdateKurse();
+
+            if (!EinfachesSchliessen)
+            {
+                KurseUebersicht.Show();
+                KurseUebersicht.Activate();
+                KurseUebersicht.Focus();
+            }
+
             Close();
         }
 

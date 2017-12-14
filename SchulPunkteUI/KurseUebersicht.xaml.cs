@@ -29,7 +29,7 @@ namespace SchulPunkteUI
         #endregion
 
         #region Konstruktoren
-        public KurseUebersicht()
+        public KurseUebersicht(string Semester)
         {
             InitializeComponent();
             Closing += OnWindowClosing;
@@ -37,6 +37,7 @@ namespace SchulPunkteUI
             Serialisierung = Serialisierung.Instance;
             DataContext = Manager = Manager.Instance;
             ListBoxItemStyle = this.FindResource("defaultListBoxItem") as Style;
+            SemesterLabel.Content = Semester;
 
             Serialisierung.Laden();
 
@@ -129,6 +130,12 @@ namespace SchulPunkteUI
             leistungserhebungHinzufuegen.ShowDialog();
             leistungserhebungHinzufuegen.Activate();
             leistungserhebungHinzufuegen.Focus();
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            Serialisierung.Speichern();
+            e.Cancel = false;
         }
         #endregion
     }

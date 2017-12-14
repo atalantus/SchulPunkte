@@ -1,0 +1,23 @@
+﻿<Window x:Class="SchulPunkteUI.Start"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchulPunkteUI"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="Start" Height="250" Width="400">
+    <Window.Background>
+        <SolidColorBrush Color="{StaticResource primaryColor}"/>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Label Style="{StaticResource header}" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">SchulPunkte</Label>
+        <Rectangle Fill="{StaticResource primaryDarkBrush}" Grid.Row="1"></Rectangle>
+    </Grid>
+</Window>

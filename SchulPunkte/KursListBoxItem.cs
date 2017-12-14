@@ -13,6 +13,7 @@ namespace SchulPunkte
         public Kurs Kurs { get; set; }
         public bool KursnameFehler { get; set; }
         public bool KursnummerFehler { get; set; }
+        public bool[] SemesterVorkommen { get; set; }
 
         //TODO: string kursname, kursnummer einbauen
         // so kann man vllt dann doch '(' in Kursnamen einbauen

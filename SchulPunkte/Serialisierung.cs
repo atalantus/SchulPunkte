@@ -16,7 +16,8 @@ namespace SchulPunkte
         //TODO: Mehrere Speicherungen pro Semester. Siehe Menueleiste
         #region Attribute
         private static Serialisierung _Instance = null;
-        private string _SpeicherPfad = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        private static readonly string _SpeicherPfad = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        private static readonly string _OrdnerName = "SchulPunkte";
 
         public Manager Manager { get; private set; }
         public Einstellungen Einstellungen { get; private set; }
@@ -30,17 +31,8 @@ namespace SchulPunkte
             }
         }
 
-        public string SpeicherPfad
-        {
-            get
-            {
-                return _SpeicherPfad;
-            }
-            set
-            {
-                _SpeicherPfad = value;
-            }
-        }
+        public static string SpeicherPfad { get { return _SpeicherPfad; } }
+        public static string OrdnerName { get { return _OrdnerName; } }
         #endregion
 
         #region Konstruktoren
@@ -56,7 +48,7 @@ namespace SchulPunkte
         {
             try
             {
-                string ordnerPfad = Path.Combine(_SpeicherPfad, "SchulPunkte");
+                string ordnerPfad = Path.Combine(SpeicherPfad, OrdnerName);
 
                 if (!Directory.Exists(ordnerPfad))
                 {
@@ -65,8 +57,8 @@ namespace SchulPunkte
 
                 SpeicherDaten speicherDaten = new SpeicherDaten
                 {
-                    //speicherDaten.TestSpeicherDatenSetzen();
-                    Kurse = Manager.Kurse.ToList()
+                    KurseErstes = Manager.Kurse.ToList(),
+                    Semester = Manager.AktivesSemester
                 };
 
                 FileStream datei = new FileStream(Path.Combine(ordnerPfad, "Saves.dat"), FileMode.Create);
@@ -89,7 +81,7 @@ namespace SchulPunkte
         {
             try
             {
-                string ordnerPfad = Path.Combine(_SpeicherPfad, "SchulPunkte");
+                string ordnerPfad = Path.Combine(SpeicherPfad, OrdnerName);
 
                 if (!Directory.Exists(ordnerPfad))
                 {
@@ -108,7 +100,11 @@ namespace SchulPunkte
                 FileStream datei = new FileStream(Path.Combine(ordnerPfad, "Saves.dat"), FileMode.Open);
 
                 speicherDaten = (SpeicherDaten)binaryFormatter.Deserialize(datei);
-                Manager.Kurse = new ObservableCollection<Kurs>(speicherDaten.Kurse);
+                Manager.SetKurse(new ObservableCollection<Kurs>(speicherDaten.KurseErstes),
+                    new ObservableCollection<Kurs>(speicherDaten.KurseZweites),
+                    new ObservableCollection<Kurs>(speicherDaten.KurseDrittes),
+                    new ObservableCollection<Kurs>(speicherDaten.KurseViertes));
+                Manager.AktivesSemester = speicherDaten.Semester;
                 Einstellungen = speicherDaten.Einstellungen;
 
                 datei.Close();
@@ -132,14 +128,18 @@ namespace SchulPunkte
     public class SpeicherDaten
     {
         #region Attribute
-        public List<Kurs> Kurse { get; set; }
-        public Einstellungen Einstellungen { get; private set; }
+        public List<Kurs> KurseErstes { get; set; }
+        public List<Kurs> KurseZweites { get; set; }
+        public List<Kurs> KurseDrittes { get; set; }
+        public List<Kurs> KurseViertes { get; set; }
+        public Einstellungen Einstellungen { get; set; }
+        public Manager.Semester Semester { get; set; }
         #endregion
 
         #region Konstruktoren
         public SpeicherDaten()
         {
-            Kurse = new List<Kurs>();
+            KurseErstes = new List<Kurs>();
             Einstellungen = Einstellungen.Instance;
         }
         #endregion
