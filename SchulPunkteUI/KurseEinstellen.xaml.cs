@@ -43,11 +43,15 @@ namespace SchulPunkteUI
 
             foreach (Kurs kurs in Manager.Kurse)
             {
-                KursListBoxItem kursItem = new KursListBoxItem(kurs, kurs.GetKursInfo());
-                //kursItem.Style = ListBoxItemStyle;
+                KursListBoxItem kursItem = new KursListBoxItem(kurs, kurs.GetKursInfo())
+                {
+                    Style = ListBoxItemStyle
+                };
                 KurseListBox.Items.Add(kursItem);
             }
 
+            NeuerKursname.IsEnabled = false;
+            NeueKursnummer.IsEnabled = false;
             KursnameFeedback.Content = "";
             KursnummerFeedback.Content = "";
         }
@@ -120,12 +124,12 @@ namespace SchulPunkteUI
             {
                 if (kursItem.IsFehler())
                 {
-                    kursItem.Foreground = Brushes.Red;
+                    kursItem.Foreground = new SolidColorBrush(Color.FromArgb(255, 249, 38, 74));
                     listeEnthaeltFehler = true;
                 }
                 else
                 {
-                    kursItem.Foreground = Brushes.Black;
+                    kursItem.Foreground = new SolidColorBrush(Color.FromArgb(255, 241, 241, 241));
                 }
             }
 
@@ -145,7 +149,10 @@ namespace SchulPunkteUI
         /// <param name="e"></param>
         private void KursHinzufuegen(object sender, RoutedEventArgs e)
         {
-            KursListBoxItem leererKurs = new KursListBoxItem(new Kurs("Kursname", "Kursnummer"), "Kursname (Kursnummer)");
+            KursListBoxItem leererKurs = new KursListBoxItem(new Kurs("Kursname", "Kursnummer"), "Kursname (Kursnummer)")
+            {
+                Style = ListBoxItemStyle
+            };
             KurseListBox.Items.Add(leererKurs);
             KurseListBox.SelectedItem = leererKurs;
             SelectedKurs = leererKurs;
@@ -164,6 +171,8 @@ namespace SchulPunkteUI
             if (SelectedKurs == null)
                 return;
 
+            NeuerKursname.IsEnabled = true;
+            NeueKursnummer.IsEnabled = true;
             NeuerKursname.Text = SelectedKurs.Kurs.Kursname;
             NeueKursnummer.Text = SelectedKurs.Kurs.Kursnummer;
         }

@@ -24,7 +24,7 @@ namespace SchulPunkteUI
         #region Attribute
         private Serialisierung Serialisierung;
         private Manager Manager;
-        private KursListBoxItem SelectedKurs;
+        private Kurs SelectedKurs;
         private Style ListBoxItemStyle;
         #endregion
 
@@ -35,7 +35,7 @@ namespace SchulPunkteUI
             Closing += OnWindowClosing;
 
             Serialisierung = Serialisierung.Instance;
-            Manager = Manager.Instance;
+            DataContext = Manager = Manager.Instance;
             ListBoxItemStyle = this.FindResource("defaultListBoxItem") as Style;
 
             Serialisierung.Laden();
@@ -47,13 +47,7 @@ namespace SchulPunkteUI
         #region Methoden
         public void UpdateKurse()
         {
-            KurseListBox.Items.Clear();
-            foreach (Kurs kurs in Manager.Kurse)
-            {
-                KursListBoxItem kursItem = new KursListBoxItem(kurs, kurs.GetKursInfo());
-                //kursItem.Style = ListBoxItemStyle;
-                KurseListBox.Items.Add(kursItem);
-            }
+           
         }
 
         public void UpdateGesamtUebersicht()
@@ -75,14 +69,8 @@ namespace SchulPunkteUI
                 return;
             }
 
-            LeistungserhebungenHeader.Content = "Leistungserhebungen des Kurses: " + SelectedKurs.Kurs.GetKursInfo();
+            LeistungserhebungenHeader.Content = "Leistungserhebungen des Kurses: " + SelectedKurs.GetKursInfo();
             AddLeistungserhebung.IsEnabled = true;
-            foreach (Leistungserhebung kurs in SelectedKurs.Kurs.Leistungserhebungen)
-            {
-                LeistungserhebungListBoxItem leistungserhebungItem = new LeistungserhebungListBoxItem();
-                //kursItem.Style = ListBoxItemStyle;
-                LeistungserhebungsListe.Items.Add(leistungserhebungItem);
-            }
         }
         #endregion
 
@@ -115,7 +103,7 @@ namespace SchulPunkteUI
 
         private void KurseListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedKurs = (KursListBoxItem) KurseListBox.SelectedValue;
+            SelectedKurs = (Kurs) KurseListBox.SelectedValue;
             TabControl_SelectionChanged(null, null);
         }
 

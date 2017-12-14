@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SchulPunkte;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -64,7 +66,7 @@ namespace SchulPunkte
                 SpeicherDaten speicherDaten = new SpeicherDaten
                 {
                     //speicherDaten.TestSpeicherDatenSetzen();
-                    Kurse = Manager.Kurse
+                    Kurse = Manager.Kurse.ToList()
                 };
 
                 FileStream datei = new FileStream(Path.Combine(ordnerPfad, "Saves.dat"), FileMode.Create);
@@ -106,7 +108,7 @@ namespace SchulPunkte
                 FileStream datei = new FileStream(Path.Combine(ordnerPfad, "Saves.dat"), FileMode.Open);
 
                 speicherDaten = (SpeicherDaten)binaryFormatter.Deserialize(datei);
-                Manager.Kurse = speicherDaten.Kurse;
+                Manager.Kurse = new ObservableCollection<Kurs>(speicherDaten.Kurse);
                 Einstellungen = speicherDaten.Einstellungen;
 
                 datei.Close();

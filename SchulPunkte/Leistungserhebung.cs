@@ -35,6 +35,11 @@ namespace SchulPunkte
         #endregion
 
         #region Konstruktoren
+        public Leistungserhebung()
+        {
+            einstellungen = Einstellungen.Instance;
+        }
+
         public Leistungserhebung(string name, string beschreibung, int punktzahl, int gewichtung, Typen typ, DateTime datum)
         {
             this.Beschreibung = beschreibung;

@@ -6,9 +6,12 @@
         xmlns:local="clr-namespace:SchulPunkteUI"
         mc:Ignorable="d"
         Title="Kurse Übersicht" Height="700" Width="1000" MinHeight="400" MinWidth="600">
+    <Window.Background>
+        <SolidColorBrush Color="{StaticResource primaryColor}"/>
+    </Window.Background>
     <Grid>
         <DockPanel>
-            <Menu DockPanel.Dock="Top" Name="MainMenue" FontSize="14">
+            <Menu Style="{StaticResource defaultMenu}" DockPanel.Dock="Top" Name="MainMenue" Margin="5,5,0,0">
                 <MenuItem Header="_Semester">
                     <MenuItem Header="_Semester auswählen"></MenuItem>
                     <MenuItem Header="_Neues Semester erstellen"></MenuItem>
@@ -27,8 +30,8 @@
             </Menu>
             <StackPanel></StackPanel>
         </DockPanel>
-        <Button Margin="0,25,10,0" Grid.Column="1" Click="Help" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top">?</Button>
-        <Grid Margin="10,50,10,10">
+        <Button Style="{StaticResource primaryBtn}" Foreground="{StaticResource primaryHighlightedBrush}"  Margin="0,25,10,0" Grid.Column="1" Click="Help" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top">?</Button>
+        <Grid Margin="10,35,10,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -37,14 +40,14 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <TabControl Grid.Column="1" Name="InfoTabs" SelectionChanged="TabControl_SelectionChanged">
-                <TabItem Header="Gesamt Übersicht">
-                    <Label>In Arbeit...</Label>
+            <TabControl Style="{StaticResource defaultTabControl}" Margin="0,35,0,0" Grid.Column="1" Name="InfoTabs" SelectionChanged="TabControl_SelectionChanged">
+                <TabItem Style="{StaticResource defaultTabItem}" FontSize="15" Header="Gesamt Übersicht">
+                    <Label FontSize="20">In Arbeit...</Label>
                 </TabItem>
-                <TabItem Header="Kurs Übersicht">
-                    <Label>In Arbeit...</Label>
+                <TabItem Style="{StaticResource defaultTabItem}" FontSize="15" Header="Kurs Übersicht">
+                    <Label FontSize="20">In Arbeit...</Label>
                 </TabItem>
-                <TabItem Header="Leistungserhebungen">
+                <TabItem Style="{StaticResource defaultTabItem}" FontSize="15" Header="Leistungserhebungen">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -56,34 +59,44 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Name="LeistungserhebungenHeader" Grid.Row="0" Grid.Column="0">Leistungserhebungen des Kurses: __Kursname (Kursnummer)__</Label>
-                        <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Name="AddLeistungserhebung" Click="AddLeistungserhebung_Click">Neue Leistungserhebung</Button>
-                        <ListView Grid.Row="2" Grid.Column="0" Name="LeistungserhebungsListe"></ListView>
+                        <Label Name="LeistungserhebungenHeader" Grid.Row="0" Grid.Column="0" FontSize="20">Leistungserhebungen des Kurses: __Kursname (Kursnummer)__</Label>
+                        <Button  Margin="10,15,0,0" FontSize="15" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Name="AddLeistungserhebung" Click="AddLeistungserhebung_Click">Neue Leistungserhebung</Button>
+                        <DataGrid Grid.Row="2" Grid.Column="0" Name="LeistungserhebungenDataGrid"></DataGrid>
                     </Grid>
                 </TabItem>
             </TabControl>
 
-            <Grid Grid.Column="0" Grid.Row="0">
+            <Grid Grid.Column="0" Grid.Row="0" Margin="25,0,10,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Column="0" Grid.Row="0">Kurse</Label>
+                <Label Style="{StaticResource header}" Grid.Column="0" Grid.Row="0" VerticalAlignment="Top" Margin="-25,0,0,0">Semester 11/1</Label>
+                <Label Style="{StaticResource header01}" Grid.Column="0" Grid.Row="1" Margin="0,15,0,0">Kurse</Label>
                 
-                <Grid Grid.Row="1" Grid.Column="0">
+                <Grid Grid.Row="2" Grid.Column="0" Margin="0,5,0,5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0">Filter:</Label>
-                    <TextBox Grid.Column="1" HorizontalAlignment="Left" Width="150"></TextBox>
+                    <Label Style="{StaticResource header03}" Grid.Column="0" FontSize="15">Filter:</Label>
+                    <TextBox Style="{StaticResource defaultTextBox}" Margin="15,0,0,0" Grid.Column="1" HorizontalAlignment="Left" Width="150"></TextBox>
                 </Grid>
                 
-                <ListBox Grid.Column="0" Grid.Row="2" Name="KurseListBox" SelectionChanged="KurseListBox_SelectionChanged"></ListBox>
+                <ListBox Style="{StaticResource defaultListBox}" ItemsSource="{Binding Path=Kurse}" DisplayMemberPath="KursInfo" Grid.Column="0" Grid.Row="3" Name="KurseListBox" SelectionChanged="KurseListBox_SelectionChanged">
+                   <!-- <Style>
+                        <Style.Resources>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Style" Value="{StaticResource defaultListBoxItem}"/>
+                            </Style>
+                        </Style.Resources>
+                    </Style>-->
+                </ListBox>
             </Grid>
         </Grid>
     </Grid>

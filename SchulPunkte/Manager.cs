@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +11,11 @@ namespace SchulPunkte
     {
         private static Manager _Instance = null;
 
-        public List<Kurs> Kurse { get; set; }
+        public ObservableCollection<Kurs> Kurse { get; set; }
 
         private Manager()
         {
-            Kurse = new List<Kurs>();
+            Kurse = new ObservableCollection<Kurs>();
         }
 
         public static Manager Instance

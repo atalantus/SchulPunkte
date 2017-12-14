@@ -12,6 +12,14 @@ namespace SchulPunkte
         #region Attribute
         public string Kursnummer { get; set; }
         public string Kursname { get; set; }
+        public string KursInfo
+        {
+            get
+            {
+                return GetKursInfo();
+            }
+            private set { }
+        }
         public string KursID { get { return Kursname; } private set { } }
         public List<Leistungserhebung> Leistungserhebungen { get; private set; }
         private List<Leistungserhebung> KleineLE { get; set; }
