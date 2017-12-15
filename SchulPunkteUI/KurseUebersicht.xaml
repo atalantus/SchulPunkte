@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchulPunkteUI"
         mc:Ignorable="d"
-        Closing="Window_Closing"
         Title="Kurse Übersicht" Height="700" Width="1000" MinHeight="400" MinWidth="600">
     <Window.Background>
         <SolidColorBrush Color="{StaticResource primaryColor}"/>

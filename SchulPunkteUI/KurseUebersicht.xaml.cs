@@ -39,8 +39,6 @@ namespace SchulPunkteUI
             ListBoxItemStyle = this.FindResource("defaultListBoxItem") as Style;
             SemesterLabel.Content = Semester;
 
-            Serialisierung.Laden();
-
             UpdateKurse();
         }
         #endregion
@@ -130,12 +128,6 @@ namespace SchulPunkteUI
             leistungserhebungHinzufuegen.ShowDialog();
             leistungserhebungHinzufuegen.Activate();
             leistungserhebungHinzufuegen.Focus();
-        }
-
-        private void Window_Closing(object sender, CancelEventArgs e)
-        {
-            Serialisierung.Speichern();
-            e.Cancel = false;
         }
         #endregion
     }

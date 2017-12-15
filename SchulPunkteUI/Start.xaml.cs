@@ -24,7 +24,6 @@ namespace SchulPunkteUI
         {
             InitializeComponent();
             //TODO: Loading
-            Continue();
         }
 
         public void Continue()
@@ -51,6 +50,7 @@ namespace SchulPunkteUI
                         kurseUebersicht = new KurseUebersicht("Semester 12/2");
                         break;
                 }
+
                 kurseUebersicht.Show();
                 kurseUebersicht.Activate();
                 kurseUebersicht.Focus();
@@ -63,6 +63,12 @@ namespace SchulPunkteUI
             }
 
             Close();
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            System.Threading.Thread.Sleep(3000);
+            Continue();
         }
     }
 }

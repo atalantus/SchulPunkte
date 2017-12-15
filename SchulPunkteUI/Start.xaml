@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:SchulPunkteUI"
         mc:Ignorable="d"
         WindowStyle="None"
+        ContentRendered="Window_ContentRendered"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Title="Start" Height="250" Width="400">

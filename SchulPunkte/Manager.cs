@@ -11,6 +11,11 @@ namespace SchulPunkte
     {
         private static Manager _Instance = null;
 
+        //TODO: System aendern
+        // Eine Kurs Liste mit allen Kursen. Die Klasse Kurs enthaelt 5 booleans,
+        // die angeben ob die Kurse im jeweiligen Semester vertreten sind.
+        // Beim Laden eines Semesters die Kurse, die im jeweiligen Semester vorhanden sind
+        // über LINQ rausfinden und in eine eigene "AktiveKurse" Liste packen.
         private ObservableCollection<Kurs> _KurseErstes { get; set; }
         private ObservableCollection<Kurs> _KurseZweites { get; set; }
         private ObservableCollection<Kurs> _KurseDrittes { get; set; }
@@ -78,5 +83,10 @@ namespace SchulPunkte
             _KurseDrittes = kurseDrittes;
             _KurseViertes = kurseViertes;
         }
+
+        public List<Kurs> GetKurseErstes() { return _KurseErstes.ToList(); }
+        public List<Kurs> GetKurseZweites() { return _KurseZweites.ToList(); }
+        public List<Kurs> GetKurseDrittes() { return _KurseDrittes.ToList(); }
+        public List<Kurs> GetKurseViertes() { return _KurseViertes.ToList(); }
     }
 }

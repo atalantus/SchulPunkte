@@ -57,7 +57,10 @@ namespace SchulPunkte
 
                 SpeicherDaten speicherDaten = new SpeicherDaten
                 {
-                    KurseErstes = Manager.Kurse.ToList(),
+                    KurseErstes = Manager.GetKurseErstes(),
+                    KurseZweites = Manager.GetKurseZweites(),
+                    KurseDrittes = Manager.GetKurseDrittes(),
+                    KurseViertes = Manager.GetKurseViertes(),
                     Semester = Manager.AktivesSemester
                 };
 
@@ -140,6 +143,9 @@ namespace SchulPunkte
         public SpeicherDaten()
         {
             KurseErstes = new List<Kurs>();
+            KurseZweites = new List<Kurs>();
+            KurseDrittes = new List<Kurs>();
+            KurseViertes = new List<Kurs>();
             Einstellungen = Einstellungen.Instance;
         }
         #endregion
