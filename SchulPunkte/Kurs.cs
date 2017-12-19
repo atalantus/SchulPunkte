@@ -12,6 +12,7 @@ namespace SchulPunkte
         #region Attribute
         public string Kursnummer { get; set; }
         public string Kursname { get; set; }
+        public bool[] Semester { get; set; }
         public string KursInfo
         {
             get
@@ -31,6 +32,7 @@ namespace SchulPunkte
         {
             this.Kursnummer = kursname;
             this.Kursname = kursname;
+            Semester = new bool[4];
             Leistungserhebungen = new List<Leistungserhebung>();
             KleineLE = new List<Leistungserhebung>();
             GrosseLE = new List<Leistungserhebung>();
@@ -40,6 +42,7 @@ namespace SchulPunkte
         {
             this.Kursnummer = kursnummer;
             this.Kursname = kursname;
+            Semester = new bool[4];
             Leistungserhebungen = new List<Leistungserhebung>();
             KleineLE = new List<Leistungserhebung>();
             GrosseLE = new List<Leistungserhebung>();
@@ -47,6 +50,30 @@ namespace SchulPunkte
         #endregion
 
         #region Methoden
+        public void ChangeKursSemester(bool erstesSemester, bool zweitesSemester, bool drittesSemester, bool viertesSemester)
+        {
+            Semester[0] = erstesSemester;
+            Semester[1] = zweitesSemester;
+            Semester[2] = drittesSemester;
+            Semester[3] = viertesSemester;
+        }
+
+        public bool IsInActiveSemester()
+        {
+            switch (Manager.Instance.AktivesSemester)
+            {
+                case Manager.Semester.Erstes:
+                    return Semester[0];
+                case Manager.Semester.Zweites:
+                    return Semester[1];
+                case Manager.Semester.Drittes:
+                    return Semester[2];
+                case Manager.Semester.Viertes:
+                    return Semester[3];
+            }
+            return false;
+        }
+
         public void AddLeistungserhebung(Leistungserhebung leistungserhebung)
         {
             Leistungserhebungen.Add(leistungserhebung);

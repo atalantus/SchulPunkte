@@ -82,5 +82,10 @@ namespace SchulPunkteUI
 
             Close();
         }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Auswaehlen_Click(null, null);
+        }
     }
 }

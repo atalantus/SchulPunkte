@@ -9,6 +9,7 @@ namespace SchulPunkte
 {
     public class Manager
     {
+        #region Attribute
         private static Manager _Instance = null;
 
         //TODO: System aendern
@@ -16,20 +17,8 @@ namespace SchulPunkte
         // die angeben ob die Kurse im jeweiligen Semester vertreten sind.
         // Beim Laden eines Semesters die Kurse, die im jeweiligen Semester vorhanden sind
         // über LINQ rausfinden und in eine eigene "AktiveKurse" Liste packen.
-        private ObservableCollection<Kurs> _KurseErstes { get; set; }
-        private ObservableCollection<Kurs> _KurseZweites { get; set; }
-        private ObservableCollection<Kurs> _KurseDrittes { get; set; }
-        private ObservableCollection<Kurs> _KurseViertes { get; set; }
-
-        public ObservableCollection<Kurs> Kurse
-        {
-            get
-            {
-                return GetKurs();
-            }
-            private set { }
-        }
-
+        public ObservableCollection<Kurs> Kurse { get; set; }
+        public ObservableCollection<Kurs> AktiveKurse { get; set; }
         public enum Semester
         {
             Erstes = 11_1,
@@ -37,14 +26,19 @@ namespace SchulPunkte
             Drittes = 12_1,
             Viertes = 12_2
         }
-        public Semester AktivesSemester;
 
-        private Manager()
+        private Semester _AktivesSemester;
+        public Semester AktivesSemester
         {
-            _KurseErstes = new ObservableCollection<Kurs>();
-            _KurseZweites = new ObservableCollection<Kurs>();
-            _KurseDrittes = new ObservableCollection<Kurs>();
-            _KurseViertes = new ObservableCollection<Kurs>();
+            get
+            {
+                return _AktivesSemester;
+            }
+            set
+            {
+                _AktivesSemester = value;
+                AktivesSemester_ValueSet();
+            }
         }
 
         public static Manager Instance
@@ -56,37 +50,29 @@ namespace SchulPunkte
                 return _Instance;
             }
         }
+        #endregion
 
-        private ObservableCollection<Kurs> GetKurs()
+        #region Konstruktoren
+        private Manager()
         {
-            switch (AktivesSemester)
-            {
-                case Semester.Erstes:
-                    return _KurseErstes;
-                case Semester.Zweites:
-                    return _KurseZweites;
-                case Semester.Drittes:
-                    return _KurseDrittes;
-                case Semester.Viertes:
-                    return _KurseViertes;
-            }
-            return null;
+            Kurse = new ObservableCollection<Kurs>();
         }
+        #endregion
 
-        public void SetKurse(ObservableCollection<Kurs> kurseErstes,
-            ObservableCollection<Kurs> kurseZweites,
-            ObservableCollection<Kurs> kurseDrittes,
-            ObservableCollection<Kurs> kurseViertes)
+        #region Methoden
+
+
+        public List<Kurs> GetKurseAusAktuellemSemester()
         {
-            _KurseErstes = kurseErstes;
-            _KurseZweites = kurseZweites;
-            _KurseDrittes = kurseDrittes;
-            _KurseViertes = kurseViertes;
+            return Kurse.Where(k => k.IsInActiveSemester()).ToList();
         }
+        #endregion
 
-        public List<Kurs> GetKurseErstes() { return _KurseErstes.ToList(); }
-        public List<Kurs> GetKurseZweites() { return _KurseZweites.ToList(); }
-        public List<Kurs> GetKurseDrittes() { return _KurseDrittes.ToList(); }
-        public List<Kurs> GetKurseViertes() { return _KurseViertes.ToList(); }
+        #region Event Handler
+        public void AktivesSemester_ValueSet()
+        {
+            AktiveKurse = new ObservableCollection<Kurs>(GetKurseAusAktuellemSemester());
+        }
+        #endregion
     }
 }

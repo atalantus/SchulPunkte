@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchulPunkteUI"
         mc:Ignorable="d"
+        Closing="OnWindowClosing"
         ResizeMode="NoResize"
         Title="Kurse einstellen" Height="510" Width="450">
     <Window.Background>
@@ -45,6 +46,8 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Label Style="{StaticResource header03}" Grid.Row="0">Kurs bearbeiten</Label>
                     <Label Style="{StaticResource header04}" Grid.Row="1">Kursname:</Label>
@@ -53,6 +56,21 @@
                     <Label Style="{StaticResource header04}" Grid.Row="4">Kursnummer:</Label>
                     <TextBox Style="{StaticResource defaultTextBox}" Grid.Row="5" Name="NeueKursnummer" GotKeyboardFocus="NeueKursnummer_GotKeyboardFocus" TextChanged="NeueKursnummer_TextChanged"></TextBox>
                     <Label Style="{StaticResource warningFeedbackLabel}" Grid.Row="6" Name="KursnummerFeedback">Error</Label>
+                    <Label Style="{StaticResource header04}" Grid.Row="7">Semester wählen:</Label>
+                    <Grid Grid.Row="8">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Grid.Row="0" Grid.Column="0" Name="KursErstesSemester" Checked="KursErstesSemester_Checked" Unchecked="KursErstesSemester_Checked">Semester 11/1</CheckBox>
+                        <CheckBox Grid.Row="0" Grid.Column="1" Name="KursZweitesSemester" Checked="KursZweitesSemester_Checked" Unchecked="KursZweitesSemester_Checked">Semester 11/2</CheckBox>
+                        <CheckBox Grid.Row="1" Grid.Column="0" Name="KursDrittesSemester" Checked="KursDrittesSemester_Checked" Unchecked="KursDrittesSemester_Checked">Semester 12/1</CheckBox>
+                        <CheckBox Grid.Row="1" Grid.Column="1" Name="KursViertesSemester" Checked="KursViertesSemester_Checked" Unchecked="KursViertesSemester_Checked">Semester 12/2</CheckBox>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>

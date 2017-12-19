@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SchulPunkte;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace SchulPunkteUI
 {
@@ -158,6 +159,8 @@ namespace SchulPunkteUI
             KurseListBox.Items.Add(leererKurs);
             KurseListBox.SelectedItem = leererKurs;
             SelectedKurs = leererKurs;
+            NeuerKursname.Focus();
+            NeuerKursname.SelectAll();
         }
 
         /// <summary>
@@ -310,6 +313,31 @@ namespace SchulPunkteUI
             Close();
         }
 
+        private void KursErstesSemester_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectedKurs.Kurs.Semester[0] = (bool)KursErstesSemester.IsChecked;
+        }
+
+        private void KursZweitesSemester_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectedKurs.Kurs.Semester[1] = (bool)KursZweitesSemester.IsChecked;
+        }
+
+        private void KursDrittesSemester_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectedKurs.Kurs.Semester[2] = (bool)KursDrittesSemester.IsChecked;
+        }
+
+        private void KursViertesSemester_Checked(object sender, RoutedEventArgs e)
+        {
+            SelectedKurs.Kurs.Semester[3] = (bool)KursViertesSemester.IsChecked;
+        }
+
+        public void OnWindowClosing(object sender, CancelEventArgs e)
+        {
+            if (!EinfachesSchliessen && !KurseUebersicht.IsActive)
+                KurseUebersicht.Close();
+        }
         //TODO: Kurse löschen können (nach Bestaetigung)
         //Moechtest du wirklich den Kurs #kurs mit n eingetragenen Leistungserhebungen loeschen?
         #endregion

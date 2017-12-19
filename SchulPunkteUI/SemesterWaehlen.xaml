@@ -19,10 +19,10 @@
         </Grid.RowDefinitions>
         <Label Style="{StaticResource header01}" Grid.Row="0">Semester wählen</Label>
         <ListView Style="{StaticResource defaultListBox}" Grid.Row="1" Name="SemesterListView">
-            <ListViewItem>Semester 11/1</ListViewItem>
-            <ListViewItem>Semester 11/2</ListViewItem>
-            <ListViewItem>Semester 12/1</ListViewItem>
-            <ListViewItem>Semester 12/2</ListViewItem>
+            <ListViewItem MouseDoubleClick="ListViewItem_MouseDoubleClick">Semester 11/1</ListViewItem>
+            <ListViewItem MouseDoubleClick="ListViewItem_MouseDoubleClick">Semester 11/2</ListViewItem>
+            <ListViewItem MouseDoubleClick="ListViewItem_MouseDoubleClick">Semester 12/1</ListViewItem>
+            <ListViewItem MouseDoubleClick="ListViewItem_MouseDoubleClick">Semester 12/2</ListViewItem>
         </ListView>
         <Grid Grid.Row="2" Margin="0,15,0,0">
             <Grid.ColumnDefinitions>

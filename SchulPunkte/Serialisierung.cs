@@ -57,10 +57,7 @@ namespace SchulPunkte
 
                 SpeicherDaten speicherDaten = new SpeicherDaten
                 {
-                    KurseErstes = Manager.GetKurseErstes(),
-                    KurseZweites = Manager.GetKurseZweites(),
-                    KurseDrittes = Manager.GetKurseDrittes(),
-                    KurseViertes = Manager.GetKurseViertes(),
+                    Kurse = Manager.Instance.Kurse.ToList(),
                     Semester = Manager.AktivesSemester
                 };
 
@@ -103,10 +100,7 @@ namespace SchulPunkte
                 FileStream datei = new FileStream(Path.Combine(ordnerPfad, "Saves.dat"), FileMode.Open);
 
                 speicherDaten = (SpeicherDaten)binaryFormatter.Deserialize(datei);
-                Manager.SetKurse(new ObservableCollection<Kurs>(speicherDaten.KurseErstes),
-                    new ObservableCollection<Kurs>(speicherDaten.KurseZweites),
-                    new ObservableCollection<Kurs>(speicherDaten.KurseDrittes),
-                    new ObservableCollection<Kurs>(speicherDaten.KurseViertes));
+                Manager.Kurse = new ObservableCollection<Kurs>(speicherDaten.Kurse);
                 Manager.AktivesSemester = speicherDaten.Semester;
                 Einstellungen = speicherDaten.Einstellungen;
 
@@ -131,10 +125,7 @@ namespace SchulPunkte
     public class SpeicherDaten
     {
         #region Attribute
-        public List<Kurs> KurseErstes { get; set; }
-        public List<Kurs> KurseZweites { get; set; }
-        public List<Kurs> KurseDrittes { get; set; }
-        public List<Kurs> KurseViertes { get; set; }
+        public List<Kurs> Kurse { get; set; }
         public Einstellungen Einstellungen { get; set; }
         public Manager.Semester Semester { get; set; }
         #endregion
@@ -142,10 +133,7 @@ namespace SchulPunkte
         #region Konstruktoren
         public SpeicherDaten()
         {
-            KurseErstes = new List<Kurs>();
-            KurseZweites = new List<Kurs>();
-            KurseDrittes = new List<Kurs>();
-            KurseViertes = new List<Kurs>();
+            Kurse = new List<Kurs>();
             Einstellungen = Einstellungen.Instance;
         }
         #endregion
