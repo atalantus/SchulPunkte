@@ -7,6 +7,7 @@ namespace SchulPunkteTest
     [TestClass]
     public class SerialisierungTests
     {
+        /*
         [TestMethod]
         public void SpeichernTest()
         {
@@ -21,6 +22,6 @@ namespace SchulPunkteTest
             Serialisierung serialisierung = Serialisierung.Instance;
 
             Assert.AreEqual(true, serialisierung.Laden());
-        }
+        }*/
     }
 }

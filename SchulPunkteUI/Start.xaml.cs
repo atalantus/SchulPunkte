@@ -51,6 +51,11 @@ namespace SchulPunkteUI
                         break;
                 }
 
+                if (kurseUebersicht == null)
+                {
+
+                }
+
                 kurseUebersicht.Show();
                 kurseUebersicht.Activate();
                 kurseUebersicht.Focus();
