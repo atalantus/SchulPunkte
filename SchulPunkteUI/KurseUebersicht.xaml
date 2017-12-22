@@ -13,19 +13,15 @@
         <DockPanel>
             <Menu Style="{StaticResource defaultMenu}" DockPanel.Dock="Top" Name="MainMenue" Margin="5,5,0,0">
                 <MenuItem Header="_Semester">
-                    <MenuItem Header="_Semester auswählen"></MenuItem>
-                    <MenuItem Header="_Neues Semester erstellen"></MenuItem>
+                    <MenuItem Header="_Semester auswählen" Name="SemesterWaehlenMenue" Click="SemesterWaehlenMenue_Click"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="_Einstellen">
-                    <MenuItem Header="_Einstellungen"></MenuItem>
+                    <MenuItem Header="_Einstellungen" Name="EinstellungenMenue" Click="EinstellungenMenue_Click"></MenuItem>
                     <Separator />
                     <MenuItem Header="_Kurse Einstellen" Name="KurseEinstellenMenue" Click="KurseEinstellenMenue_Click"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="_Hilfe">
-                    <MenuItem Header="_Frag Jonas"></MenuItem>
-                    <MenuItem Header="_Color Theme" Name="MainWindowMenue" Click="MainWindowMenue_Click"></MenuItem>
-                    <Separator/>
-                    <MenuItem Header="_Auf Update prüfen"></MenuItem>
+                    <MenuItem Header="_Auf Update prüfen" Name="UpdatePruefenMenue" Click="UpdatePruefenMenue_Click"></MenuItem>
                 </MenuItem>
             </Menu>
             <StackPanel></StackPanel>

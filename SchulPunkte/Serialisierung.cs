@@ -13,7 +13,6 @@ namespace SchulPunkte
 {
     public class Serialisierung
     {
-        //TODO: Mehrere Speicherungen pro Semester. Siehe Menueleiste
         #region Attribute
         private static Serialisierung _Instance = null;
         private static readonly string _SpeicherPfad = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);

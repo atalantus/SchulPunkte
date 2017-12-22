@@ -7,16 +7,13 @@ using System.Threading.Tasks;
 
 namespace SchulPunkte
 {
+    //TODO: Projekt auf MVVM umstrukturieren (Altes Tutorial http://openbook.rheinwerk-verlag.de/visual_csharp_2012/1997_28_005.html)
     public class Manager
     {
         #region Attribute
         private static Manager _Instance = null;
+        public static readonly string HilfURL = "https://www.google.de";
 
-        //TODO: System aendern
-        // Eine Kurs Liste mit allen Kursen. Die Klasse Kurs enthaelt 5 booleans,
-        // die angeben ob die Kurse im jeweiligen Semester vertreten sind.
-        // Beim Laden eines Semesters die Kurse, die im jeweiligen Semester vorhanden sind
-        // über LINQ rausfinden und in eine eigene "AktiveKurse" Liste packen.
         public ObservableCollection<Kurs> Kurse { get; set; }
         public ObservableCollection<Kurs> AktiveKurse { get; set; }
         public enum Semester

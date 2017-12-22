@@ -284,7 +284,7 @@ namespace SchulPunkteUI
 
         private void Help(object sender, RoutedEventArgs e)
         {
-            //TODO: Hilfe Panel anzeigen
+            Process.Start(Manager.HilfURL);
         }
 
         /// <summary>

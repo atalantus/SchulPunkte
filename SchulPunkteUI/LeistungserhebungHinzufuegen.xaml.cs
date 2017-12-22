@@ -71,7 +71,7 @@ namespace SchulPunkteUI
 
         private void Help(object sender, RoutedEventArgs e)
         {
-
+            Process.Start(Manager.HilfURL);
         }
         #endregion
     }

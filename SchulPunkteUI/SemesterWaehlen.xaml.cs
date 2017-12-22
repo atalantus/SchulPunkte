@@ -21,10 +21,18 @@ namespace SchulPunkteUI
     public partial class SemesterWaehlen : Window
     {
         private bool ErstesMal = false;
+        private KurseUebersicht KurseUebersicht;
 
         public SemesterWaehlen()
         {
             InitializeComponent();
+        }
+
+        public SemesterWaehlen(KurseUebersicht kurseUebersicht)
+        {
+            InitializeComponent();
+
+            KurseUebersicht = kurseUebersicht;
         }
 
         public SemesterWaehlen(bool ohneAbbrechen)
@@ -65,6 +73,11 @@ namespace SchulPunkteUI
                     kurseUebersicht = new KurseUebersicht("Semester 12/2");
                     Manager.Instance.AktivesSemester = Manager.Semester.Viertes;
                     break;
+            }
+
+            if (KurseUebersicht != null)
+            {
+                KurseUebersicht.Close();
             }
 
             if (!ErstesMal)

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,17 +88,9 @@ namespace SchulPunkteUI
             Serialisierung.Speichern();
         }
 
-        private void MainWindowMenue_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            mainWindow.Activate();
-            mainWindow.Focus();
-        }
-
         private void Help(object sender, RoutedEventArgs e)
         {
-
+            Process.Start(Manager.HilfURL);
         }
 
         private void KurseListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -128,6 +121,27 @@ namespace SchulPunkteUI
             leistungserhebungHinzufuegen.ShowDialog();
             leistungserhebungHinzufuegen.Activate();
             leistungserhebungHinzufuegen.Focus();
+        }
+
+        private void SemesterWaehlenMenue_Click(object sender, RoutedEventArgs e)
+        {
+            SemesterWaehlen semesterWaehlen = new SemesterWaehlen(this);
+            semesterWaehlen.ShowDialog();
+            semesterWaehlen.Activate();
+            semesterWaehlen.Focus();
+        }
+
+        private void EinstellungenMenue_Click(object sender, RoutedEventArgs e)
+        {
+            Einstellungen einstellungen = new Einstellungen();
+            einstellungen.ShowDialog();
+            einstellungen.Activate();
+            einstellungen.Focus();
+        }
+
+        private void UpdatePruefenMenue_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(Manager.HilfURL);
         }
         #endregion
     }
